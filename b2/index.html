@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday...!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script&display=swap"
+        rel="stylesheet" />
+    <!-- ADD TO HEAD -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script&family=Baloo+Bhai+2&display=swap"
+        rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(135deg, #ffe0ec, #ffe6f7);
+            overflow: hidden;
+            height: 100vh;
+            color: #b30059;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: bgPulse 10s infinite alternate;
+        }
+
+        @keyframes bgPulse {
+            0% {
+                background: linear-gradient(135deg, #ffe0ec, #ffe6f7);
+            }
+
+            100% {
+                background: linear-gradient(135deg, #ffcce5, #ffecf2);
+            }
+        }
+
+        .container {
+            background: rgba(255, 240, 245, 0.95);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.4);
+            animation: fadeIn 2s ease-out forwards;
+            max-width: 600px;
+            width: 90%;
+            z-index: 2;
+            position: relative;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: #d81b60;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #ffb6c1;
+        }
+
+        .typewriter {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 2px solid #d81b60;
+            white-space: nowrap;
+            animation: typing 3s steps(30, end), blink-caret 0.8s step-end infinite;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        .countdown {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ff1a75;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            animation: fadeIn 2s ease-out 1s forwards;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.5rem;
+            color: white;
+            background-color: #ff4d88;
+            padding: 12px 25px;
+            border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #ff1a75;
+            transform: scale(1.1);
+        }
+
+        #music-toggle {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: #ff66a3;
+            border: none;
+            color: white;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            z-index: 5;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+
+        .love-popup {
+            position: fixed;
+            z-index: 9999;
+            color: #d81b60;
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-size: 1.8rem;
+            font-family: 'Great Vibes', cursive;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+            white-space: nowrap;
+            pointer-events: none;
+            animation: floatWave 7s linear forwards;
+          }
+          
+         .love-popup.marathi-style {
+            font-family: 'Baloo Bhai 2', cursive;
+            font-size: 1.6rem;
+        }
+          
+          /* 🎈 Wavy vertical + horizontal floating */
+          @keyframes floatWave {
+            0% {
+              transform: translateY(-50px) translateX(0px);
+              opacity: 0;
+            }
+            10% {
+              opacity: 1;
+            }
+            50% {
+              transform: translateY(50vh) translateX(20px);
+            }
+            100% {
+              transform: translateY(100vh) translateX(-20px);
+              opacity: 0;
+            }
+          }
+          
+          
+        .falling-heart {
+            position: fixed;
+            font-size: 30px;
+            color: #ff69b4;
+            opacity: 0.8;
+            animation: fall 8s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) scale(0.8);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="bg-music" autoplay loop>
+        <source src="Jaan Ban Gaye (Lyrics)  Khuda Haafiz  Mithoon, Vishal Mishra, Asees Kaur.mp3" type="audio/mpeg" />
+    </audio>
+    <button id="music-toggle">🔈 Mute</button>
+
+    <div class="container">
+        <h1>Happy Birthday Sweetheart 🎉</h1>
+        <div class="typewriter">I have something special planned for you... 💖</div>
+        <div class="countdown" id="countdown">Cake cutting in: 00:00:00</div>
+        <div class="nav-links">
+            <a href="cake.html">🎂 Cake Cutting</a>
+            <a href="messages.html">💬 Messages</a>
+            <a href="gallery.html">📸 Memories</a>
+            <a href="surprise.html">🎁 Surprise</a>
+        </div>
+    </div>
+
+    <script>
+        // Music Fade-in
+          // Music control & resume
+            const music = document.getElementById("bg-music");
+            const toggle = document.getElementById("music-toggle");
+
+            toggle.addEventListener("click", () => {
+                music.muted = !music.muted;
+                toggle.textContent = music.muted ? "🔇 Unmute" : "🔈 Mute";
+            });
+
+            document.addEventListener("DOMContentLoaded", function () {
+                try {
+                    music.volume = 0.6;
+                    const lastTime = sessionStorage.getItem("musicTime");
+                    if (lastTime) music.currentTime = parseFloat(lastTime);
+                    music.play().catch(() => { });
+                    setInterval(() => {
+                        sessionStorage.setItem("musicTime", music.currentTime);
+                    }, 1000);
+                } catch (e) {
+                    console.error("Music error:", e);
+                }
+            });
+
+        // Countdown to midnight
+        const countdown = document.getElementById("countdown");
+        const target = new Date();
+        target.setHours(24, 0, 0, 0);
+        setInterval(() => {
+            const now = new Date();
+            const diff = target - now;
+            if (diff <= 0) return countdown.textContent = "It's time to cut the cake! 🎂";
+            const h = String(Math.floor(diff / 3600000)).padStart(2, '0');
+            const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+            const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+            countdown.textContent = `Cake cutting in: ${h}:${m}:${s}`;
+        }, 1000);
+
+        // Romantic Love Messages
+        const messages = [
+                "Aaho, you are my everything 💞",
+                "तुमचं हासणं म्हणजे माझं सर्वस्व 😊",
+                "With you, life feels like a fairytale ✨",
+                "आपण दोघं मिळूनच सुंदर जग बनवतो 💑",
+                "Aaho, तुमच्या मिठीत मला सगळं विसरायला होतं 🤗",
+                "You are my home, Aaho 🏠",
+                "तुमचं प्रेम म्हणजे माझं बळ 💪❤️",
+                "Aaho, माझं मन रोज तुमच्यासाठी धडधडतं 💓",
+                "Being your Baiko is the best thing ever 💍",
+                "तुमच्या शिवाय काहीही अपूर्ण वाटतं 😢",
+                "Aaho, तुमच्यासोबतचा प्रत्येक क्षण खास आहे 🌸",
+                "Forever yours, Aaho 💖",
+                "तुमचा आवाज ऐकला की मन शांत होतं 🌿",
+                "You and I – always meant to be 💫",
+                "Aaho, तुमचं प्रेम म्हणजे माझं आभाळातलं इंद्रधनुष्य 🌈",
+                "You’re not just my husband, you’re my peace 🙏",
+                "तुमच्या डोळ्यांत माझं विश्व आहे 👁️❤️",
+                "Aaho, तुमचं प्रेम म्हणजे देवाचं वरदान 💝",
+                "Thank you for choosing me, Aaho 💌",
+                "तुमच्याशिवाय हे आयुष्य अपूर्ण आहे 🕊️",
+                "Every heartbeat says — Aaho, I love you 💗",
+                "तुमच्यासोबतचा चहा आणि संवाद – अमृतसमान ☕💬",
+                "You're my comfort, my chaos, and my calm, Aaho 🌺",
+                "Aaho, तुम्ही जवळ असलात की जग जिंकलेलं वाटतं 🏆",
+                "तुमच्या प्रेमाशिवाय जगणं म्हणजे फक्त श्वास 👣",
+                "Loving you is my favorite habit, Aaho 🥰",
+                "तुमचा स्पर्श म्हणजे देवाच्या आशीर्वादासारखा ✋✨",
+                "Aaho, माझं प्रत्येक स्वप्न तुमच्याशी जोडलेलं आहे 🌙",
+                "आपण दोघं आहोत म्हणून आयुष्य सुंदर आहे 💖",
+                "तुमच्याशी बोलणं म्हणजे मनातली फुलं उमलणं 🌷"
+            ];
+
+
+            const pastelColors = [
+                "#ffe0f0", "#e0f7ff", "#ffe9cc", "#e6f5e6", "#f5e0ff", "#fff0e0"
+            ];
+
+            function showFloatingMessage() {
+                const msg = document.createElement("div");
+                msg.className = "love-popup";
+                msg.textContent = messages[Math.floor(Math.random() * messages.length)];
+
+                // Random pastel background
+                msg.style.background = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+
+                // Position on left or right
+                const side = Math.random() < 0.5 ? 'left' : 'right';
+                const offset = Math.random() * 15 + 5;
+                msg.style[side] = `${offset}%`;
+                msg.style.top = '0px';
+
+                document.body.appendChild(msg);
+                setTimeout(() => msg.remove(), 7000); // Matches animation duration
+            }
+
+            setInterval(showFloatingMessage, 5000);
+            
+
+        // Falling Hearts
+        function createFallingHeart() {
+            const heart = document.createElement("div");
+            heart.className = "falling-heart";
+            heart.textContent = "💖";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 10000);
+        }
+        setInterval(createFallingHeart, 400);
+
+        // Confetti Hearts on Click
+        document.addEventListener("click", (e) => {
+            for (let i = 0; i < 25; i++) {
+                const heart = document.createElement("div");
+                heart.textContent = "💖";
+                heart.style.position = "fixed";
+                heart.style.left = e.clientX + "px";
+                heart.style.top = e.clientY + "px";
+                heart.style.fontSize = Math.random() * 16 + 16 + "px";
+                heart.style.transition = "all 1s ease";
+                heart.style.opacity = 1;
+                heart.style.pointerEvents = "none";
+                heart.style.transform = `translate(${(Math.random() - 0.5) * 200}px, ${(Math.random() - 0.5) * 200}px) rotate(${Math.random() * 360}deg)`;
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 1000);
+            }
+        });
+       
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Our Love Story</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            font-size: large;
+            background: radial-gradient(circle, #ffe0ec, #fff5fa);
+            color: #4e0d3a;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Great Vibes', cursive;
+            font-weight: bold;
+            color: #f4f3f3;
+        }
+
+        .sparkle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('image4.gif');
+            opacity: 0.25;
+            z-index: -1;
+        }
+
+        .section {
+            padding: 60px 20px;
+        }
+
+        .surprise-btn {
+            background: #c2185b;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            margin: 10px;
+        }
+
+        .surprise-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.2);
+            /* semi-transparent layer */
+            backdrop-filter: blur(8px);
+            /* blurs what's behind the popup */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            width: 90%;
+            max-width: 500px;
+            color: #fff;
+        }
+
+        /* Optional: add background image behind the blur */
+        .popup::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url('Happy-Birthday-Gif_01_wordsjustforyou_070621.gif') center/cover no-repeat;
+            z-index: -1;
+            filter: blur(5px);
+            border-radius: 20px;
+        }
+
+
+        .popup img {
+            max-width: 60%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            ;
+        }
+
+        .popup p.caption {
+            font-style: italic;
+            color: #f8f6f7;
+            font-weight: 500;
+        }
+
+        canvas.confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 998;
+        }
+
+        .heart-input {
+            padding: 10px 15px;
+            border: 2px solid pink;
+            border-radius: 30px;
+            outline: none;
+            width: 200px;
+            background: #fff0f5;
+            font-size: 1rem;
+            text-align: center;
+            box-shadow: 0 0 8px #ffc0cb;
+        }
+
+        .giant-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 400px;
+            height: 300px;
+            background: #fff0f5;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.8s ease;
+            overflow: hidden;
+        }
+
+        .giant-box.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .gift-pop {
+            position: absolute;
+            animation: floatUp 1.8s ease forwards;
+            font-size: 2rem;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-150px);
+                opacity: 0;
+            }
+        }
+        a.nav-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #fff;
+            color: #ff6f91;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        a.nav-link:hover {
+            background-color: #ff6f91;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff66a3;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            padding: 10px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            z-index: 5;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <button id="music-toggle">🔈 Mute</button>
+    <!-- Music -->
+    <audio id="bg-music" autoplay loop>
+        <source src="Jaan Ban Gaye (Lyrics)  Khuda Haafiz  Mithoon, Vishal Mishra, Asees Kaur.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+    </audio>
+    <div class="sparkle-bg"></div>
+
+    <!-- Welcome Section -->
+    <div class="section">
+        <h1>Hi My Love 💖</h1>
+        <p>Let me take you through our magical journey... </p>
+        <button class="surprise-btn" onclick="showSurprise('popup1')">Step 1: Dance 💃</button>
+        <button class="surprise-btn" onclick="showSurprise('popup2')">Step 2: Temple 💍</button>
+        <button class="surprise-btn" onclick="showSurprise('popup3')">Step 3: Togetherness 🤗</button>
+    </div>
+
+    <!-- Popups for Each Step -->
+    <div class="popup" id="popup1">
+        <h2>Our First Step 💃</h2>
+        <img src="xyzzzzz/selfdance.jpg" alt="Dance">
+        <p class="caption">We met during a dance competition... from fights to friendship to love.</p>
+        <button class="surprise-btn" onclick="closePopup('popup1')">Close</button>
+    </div>
+
+    <div class="popup" id="popup2">
+        <h2>Spiritual Moment 🛕</h2>
+        <img src="xyzzzzz/trambak1.jpg" alt="Temple">
+        <p class="caption">Trambak Temple, 17 Jan 2024 – a soul wedding I’ll never forget.</p>
+        <button class="surprise-btn" onclick="closePopup('popup2')">Close</button>
+    </div>
+
+    <div class="popup" id="popup3">
+        <h2>Hug Forever 🤗</h2>
+        <img src="xyzzzzz/blackdress.jpg" alt="Together">
+        <p class="caption">Your hug is my comfort zone. Always and forever, my Ahho 💕</p>
+        <button class="surprise-btn" onclick="closePopup('popup3')">Close</button>
+    </div>
+
+    <!-- Love Quest Challenge -->
+    <div class="section" id="mysteryQuiz">
+        <h1>🔐 Love Quest Challenge <style>
+                h1 {
+                    font-family: 'Great Vibes', cursive;
+                    font-weight: bold;
+                    color: #a60671;
+                }
+            </style>
+            </h2>
+            <p><strong>Level 1: What date did we realize we were more than friends?</strong></p>
+            <input type="text" id="q1" placeholder="DD/MM/YYYY" class="heart-input"><br><br>
+            <button class="surprise-btn" onclick="nextQuestion()">Next 💌</button>
+    </div>
+
+    <div class="section" id="level2" style="display:none;">
+        <p><strong>Level 2: Where did we get 'married' in front of God?</strong></p>
+        <input type="text" id="q2" placeholder="Temple Name" class="heart-input"><br><br>
+        <button class="surprise-btn" onclick="nextLevel()">Next 💖</button>
+    </div>
+
+    <div class="section" id="level3" style="display:none;">
+        <p><strong>Level 3: What do I call you most lovingly?</strong></p>
+        <input type="text" id="q3" placeholder="Nickname" class="heart-input"><br><br>
+        <button class="surprise-btn" onclick="finalReveal()">Reveal Magic 🎁</button>
+    </div>
+
+    <!-- Final Popups -->
+    <div class="popup" id="magicBox">
+        <h2>🎁 You Unlocked the Ultimate Love Box 🎁</h2>
+        <p class="caption">You know us so well, Ahho 💞</p>
+        <p style="font-size: 1.8rem;">💖💋💍🎁💌🧁🌹🎂🥂✨</p>
+        <video width="200" controls autoplay loop muted style="border-radius: 10px;">
+            <source
+                src="AQOqyVwTTE8Qof41RIzi1K6RFivcFowO85ds9ylPAGqKWpPRzMGbm5ZlBaSrI_j_jSaiuYKRNrS4eMs0_PBgfDqagQft6MoyMI9ZNqU.mp4"
+                type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p class="caption">This box holds our most magical memories and endless love!</p>
+        <button class="surprise-btn" onclick="closePopup('magicBox')">Close</button>
+    </div>
+      
+
+    <div class="popup" id="wrongAnswer">
+        <h2>Oops! Try Again 🤭</h2>
+        <p class="caption">It's okay if you forget sometimes... but try remembering again ❤️</p>
+        <button class="surprise-btn" onclick="closePopup('wrongAnswer')">Close</button>
+    </div>
+
+    <!-- Giant Surprise Box -->
+    <!-- <div class="giant-box" id="giantSurpriseBox">
+        <h2>🎉 Surprise Box! 🎁</h2>
+        <p class="caption">Our love is full of sweet surprises!</p>
+        <img src="/image6.png" width="200" alt="Gifts">
+        <button class="surprise-btn" onclick="closeGiantBox()">Close</button>
+    </div> -->
+
+    <!-- Confetti -->
+    <canvas id="confettiCanvas" class="confetti"></canvas>
+    <br><br>
+    <a class="nav-link" href="index.html">🔙 Back to Home</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        function showSurprise(popupId) {
+            document.getElementById(popupId).style.display = 'block';
+        }
+
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+
+        function closeGiantBox() {
+            document.getElementById('giantSurpriseBox').classList.remove("show");
+        }
+
+        function nextQuestion() {
+            const q1 = document.getElementById('q1').value.trim();
+            if (q1 === "06/09/2023") {
+                document.getElementById('mysteryQuiz').style.display = "none";
+                document.getElementById('level2').style.display = "block";
+            } else {
+                document.getElementById('wrongAnswer').style.display = "block";
+            }
+        }
+
+        function nextLevel() {
+            const q2 = document.getElementById('q2').value.trim().toLowerCase();
+            if (q2.includes("trambak")) {
+                document.getElementById('level2').style.display = "none";
+                document.getElementById('level3').style.display = "block";
+            } else {
+                document.getElementById('wrongAnswer').style.display = "block";
+            }
+        }
+
+        function finalReveal() {
+            const q3 = document.getElementById('q3').value.trim().toLowerCase();
+            if (q3.includes("ahho")) {
+                document.getElementById('level3').style.display = "none";
+                document.getElementById('magicBox').style.display = "block";
+                document.getElementById('giantSurpriseBox').classList.add("show");
+                confetti();
+                animateSurpriseIcons();
+            } else {
+                document.getElementById('wrongAnswer').style.display = "block";
+            }
+        }
+
+        function animateSurpriseIcons() {
+            const icons = ['🎁', '💖', '🌹', '💋', '✨'];
+            for (let i = 0; i < icons.length; i++) {
+                const span = document.createElement("span");
+                span.className = "gift-pop";
+                span.innerText = icons[i];
+                span.style.left = Math.random() * 80 + 10 + "%";
+                span.style.top = Math.random() * 20 + 40 + "%";
+                document.body.appendChild(span);
+                setTimeout(() => {
+                    span.remove();
+                }, 2000);
+            }
+        }
+    </script>
+<!-- 🎵 Background Music with Resume + Toggle
+<audio id="bg-music" autoplay loop>
+    <source src="Jaan Ban Gaye (Lyrics)  Khuda Haafiz  Mithoon, Vishal Mishra, Asees Kaur.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+</audio> -->
+
+<script>
+   // Music control & resume
+    const music = document.getElementById("bg-music");
+    const toggle = document.getElementById("music-toggle");
+
+    toggle.addEventListener("click", () => {
+        music.muted = !music.muted;
+        toggle.textContent = music.muted ? "🔇 Unmute" : "🔈 Mute";
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        try {
+            music.volume = 0.6;
+            const lastTime = sessionStorage.getItem("musicTime");
+            if (lastTime) music.currentTime = parseFloat(lastTime);
+            music.play().catch(() => { });
+            setInterval(() => {
+                sessionStorage.setItem("musicTime", music.currentTime);
+            }, 1000);
+        } catch (e) {
+            console.error("Music error:", e);
+        }
+    });
+</script>
+</body>
+
+</html>

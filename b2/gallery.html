@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💖 Our Beautiful Moments</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle, #ffe0ec, #fff5fa);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('cd127a4e9a5f7a817238c8948f16e2b1.jpg');
+            background-repeat: repeat;
+            background-size: 15%; /* Makes it repeat ~8 times across the screen */
+            background-position: top left;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .background-overlay::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(2.5px); /* Adjust blur strength here */
+            z-index: 1;
+        }
+        
+        .container {
+            margin-top: 40px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.75);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(255, 105, 135, 0.3);
+            max-width: 90%;
+            width: 500px;
+            animation: fadeIn 2s ease;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            color: #d6336c;
+            margin-bottom: 10px;
+        }
+
+      
+        .intro-text {
+            color: #6d214f;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        #photoSlide {
+            width: 100%;
+            max-height: 400px;
+            border-radius: 20px;
+            border: 4px solid #e8acc0;
+            object-fit: contain;
+            box-shadow: 0 0 25px rgba(255, 105, 135, 0.5);
+            transition: transform 2s ease, opacity 1s ease;
+        }
+
+        .fade-out {
+            opacity: 0;
+            transform: scale(0.97);
+        }
+
+        .fade-in {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+
+        .caption {
+            font-style: italic;
+            color: #7b1e3c;
+            font-size: 1rem;
+            margin-top: 10px;
+            transition: opacity 1s ease;
+        }
+
+        .caption-fade-out {
+            opacity: 0;
+        }
+
+        .caption-fade-in {
+            opacity: 1;
+        }
+
+        a.nav-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #ff6f91;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        a.nav-link:hover {
+            background-color: #d6336c;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #sparkle-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+          }
+          
+        #music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff66a3;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            padding: 10px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            z-index: 5;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-overlay"></div>
+    <div id="sparkle-background"></div>
+    <button id="music-toggle">🔈 Mute</button>
+
+    <div class="container">
+        <h1>📸 Our Beautiful Moments</h1>
+        <p class="intro-text">
+            Each photo holds a memory,<br />
+            each memory holds a heartbeat.<br />
+            Here’s to every laugh, every hug, and every adventure we’ve shared 💑
+        </p>
+
+        <img id="photoSlide" src="image.jpg/pic2.jpeg" alt="Memory Photo" />
+        <div class="caption" id="caption">
+            माझा पहिला नवारी साज… आणि मन मात्र फक्त <strong>तुमच्यासाठी</strong> 👰🏻‍♀️💖
+        </div>
+
+        <a class="nav-link" href="index.html">🔙 Back to Home</a>
+    </div>
+
+    <!-- Falling Hearts -->
+    <script>
+        tsParticles.load("sparkle-background", {
+            fullScreen: { enable: false },
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: ["#fffacd", "#ffe6f0", "#ffb6c1", "#ffffff"] },
+                shape: { type: "circle" },
+                opacity: {
+                    value: 0.9,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 0.8,
+                        opacity_min: 0.2,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 6,          // larger size
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 3,
+                        size_min: 2,
+                        sync: false
+                    }
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "bottom",
+                    straight: false,
+                    outMode: "out"
+                },
+                glow: {
+                    enable: true,
+                    color: "#fff",
+                    intensity: 0.8
+                }
+            },
+            background: {
+                color: "transparent"
+            },
+            detectRetina: true
+        });
+    </script>
+        
+    <!-- Photo Slideshow -->
+    <script>
+        const photos = [
+            { src: "image.jpg/pic2.jpeg", caption: "माझा पहिला नवारी साज… आणि मन मात्र फक्त <strong>तुमच्यासाठी</strong> 👰🏻‍♀️💖" },
+            { src: "image.jpg/pic4.jpeg", caption: "तुम्हाला पाहिलं की चेहऱ्यावर आपोआप हास्य येतं… कारण माझं हृदय तुमचं नाव घेऊनच धडधडतं 💓" },
+            { src: "image.jpg/pic1.jpeg", caption: "आपण दोघं जिथे एकत्र असतो, तिथे स्वर्ग आपोआप उतरतो 🌸" },
+            { src: "image.jpg/pic6.jpeg", caption: "तुमच्या मिठीत जग विसरायला होतं… आणि मी पूर्णत्व अनुभवते 💞" },
+            { src: "image.jpg/pic7.jpeg", caption: "तुमच्यासोबत प्रवास म्हणजे आठवणींचं सुंदर गाणं 🎶" },
+            { src: "image.jpg/pic8.jpeg", caption: "हसणं… नजरा… नि आपलं प्रेम… हे क्षण कायमचे जपून ठेवायचेत 💖" }
+        ];
+
+        let i = 0;
+        const img = document.getElementById("photoSlide");
+        const caption = document.getElementById("caption");
+
+        setInterval(() => {
+            img.classList.add("fade-out");
+            caption.classList.add("caption-fade-out");
+
+            setTimeout(() => {
+                i = (i + 1) % photos.length;
+                img.src = photos[i].src;
+                caption.innerHTML = photos[i].caption;
+
+                img.classList.remove("fade-out");
+                caption.classList.remove("caption-fade-out");
+                caption.classList.add("caption-fade-in");
+
+                setTimeout(() => caption.classList.remove("caption-fade-in"), 1000);
+            }, 1000);
+        }, 5000);
+    </script>
+
+    <!-- 🎵 Background Music with Resume + Toggle -->
+    <audio id="bg-music" autoplay loop>
+        <source src="Jaan Ban Gaye (Lyrics)  Khuda Haafiz  Mithoon, Vishal Mishra, Asees Kaur.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const music = document.getElementById("bg-music");
+        const toggle = document.getElementById("music-toggle");
+
+        toggle.addEventListener("click", () => {
+            music.muted = !music.muted;
+            toggle.textContent = music.muted ? "🔇 Unmute" : "🔈 Mute";
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            try {
+                music.volume = 0.6;
+                const lastTime = sessionStorage.getItem("musicTime");
+                if (lastTime) music.currentTime = parseFloat(lastTime);
+                music.play().catch(() => { });
+                setInterval(() => {
+                    sessionStorage.setItem("musicTime", music.currentTime);
+                }, 1000);
+            } catch (e) {
+                console.error("Music error:", e);
+            }
+        });
+    </script>
+</body>
+
+</html>
